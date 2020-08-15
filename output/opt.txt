@@ -1,0 +1,10 @@
+----------------- Options ---------------
+                  content: data/content/chicago.png      
+              decoder_dir: models/dec_r31.pth            
+                    layer: r31                           
+                 loadSize: 512                           
+               matrix_dir: models/r31.pth                
+                     outf: output/                       
+                    style: data/style/rain_princess.jpg  
+                  vgg_dir: models/vgg_r31.pth            
+----------------- End -------------------

@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    </head>
+    
+    <body>
+        <div class="container">
+            <h1>Simple image style transfer engine</h1>
+            <form method="POST" enctype="multipart/form-data">
+                <input type="file" name="content"><br>
+                <input type="submit">
+            </form>
+
+            <h2>Content:</h2>
+            {% if content %}
+            <img src="{{ content }}" width="300px">
+            {% endif %}
+
+            <h2>Transfer:</h2>
+            {% if transfer %}
+            <img src="{{transfer}}" width="300px">
+            {% endif %}
+
+            <h2>Style:</h2>
+            {% for style_img in styles %}
+            <figure style="float: left; margin-right: 10px; margin-bottom: 10px;">
+                <img src="{{ style_img[0] }}" height="180px" onclick="trans('{{style_img[1]}}')">
+            </figure>
+            {% endfor %}
+
+        </div>
+    </body>
+
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+    </script>
+
+    <script>
+        function trans(x)
+        {
+            alert('You have chose ' + x + ' as the style image. Please refresh the web to get the transfer result.');
+            $.ajax({
+                url: "http://localhost:16003/",
+                type: "GET",
+                data: {"style_basename": x},
+            });
+        }
+    </script>
+
+</html>
+
+
